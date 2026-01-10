@@ -1,3 +1,3 @@
-import { runAgent } from "./agent.js"
+import { runAgent } from "./agent.js";
 
-runAgent("schedule.jpg")
+runAgent("schedule.jpg");

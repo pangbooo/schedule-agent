@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --loader ts-node/esm ./src/index.ts",
+    "format": "prettier --write \"**/*.{ts,json}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "prettier": "^3.7.4",
     "ts-node": "^10.9.2"
   }
 }
