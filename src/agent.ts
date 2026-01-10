@@ -1,5 +1,6 @@
 import { Memory } from "./memory.js";
 import { tools } from "./tools.js";
+import { validateCourses, hasTimeConflict } from "./validator.js";
 
 export async function runAgent(imagePath: string) {
   const memory = new Memory();
@@ -17,8 +18,19 @@ export async function runAgent(imagePath: string) {
         break;
 
       case "PARSED":
+         const errors = validateCourses(memory.courses);
+         if (hasTimeConflict(memory.courses)) {
+           errors.push("发现课程时间冲突（时间重叠）。");
+         }
+
+        if (errors.length > 0) {
+          throw new Error(
+            "解析结果不合法:\n" + errors.join("\n")
+          );
+        }
+        
         await tools.calendar(memory.courses);
-        memory.state = "COMPLETED";
+        memory.state = "VALIDATED";
         break;
     }
   }
