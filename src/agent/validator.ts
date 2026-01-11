@@ -1,4 +1,4 @@
-import { Course } from "../types/index.js";
+import { Course } from "../../types/index.js";
 
 export function validateCourses(courses: Course[]): string[] {
   const errors: string[] = [];
@@ -21,7 +21,7 @@ export function hasTimeConflict(courses: Course[]): boolean {
 
   for (const date in byDate) {
     const list = byDate[date]!.sort((a, b) =>
-      a.startTime.localeCompare(b.startTime),
+      a.startTime.localeCompare(b.startTime)
     );
 
     for (let i = 1; i < list.length; i++) {
