@@ -6,8 +6,7 @@ export function validateCourses(courses: Course[]): string[] {
   for (const c of courses) {
     if (!c.title) errors.push("缺少课程名称");
     if (!c.date) errors.push(`课程 ${c.title} 缺少日期`);
-    if (!c.startTime || !c.endTime)
-      errors.push(`课程 ${c.title} 缺少时间`);
+    if (!c.startTime || !c.endTime) errors.push(`课程 ${c.title} 缺少时间`);
   }
 
   return errors;
@@ -21,8 +20,8 @@ export function hasTimeConflict(courses: Course[]): boolean {
   }
 
   for (const date in byDate) {
-    const list = byDate[date]!.sort(
-      (a, b) => a.startTime.localeCompare(b.startTime)
+    const list = byDate[date]!.sort((a, b) =>
+      a.startTime.localeCompare(b.startTime),
     );
 
     for (let i = 1; i < list.length; i++) {

@@ -19,17 +19,15 @@ export async function runAgent(imagePath: string) {
         break;
 
       case "PARSED":
-         const errors = validateCourses(memory.courses);
-         if (hasTimeConflict(memory.courses)) {
-           errors.push("发现课程时间冲突（时间重叠）。");
-         }
+        const errors = validateCourses(memory.courses);
+        if (hasTimeConflict(memory.courses)) {
+          errors.push("发现课程时间冲突（时间重叠）。");
+        }
 
         if (errors.length > 0) {
-          throw new Error(
-            "解析结果不合法:\n" + errors.join("\n")
-          );
+          throw new Error("解析结果不合法:\n" + errors.join("\n"));
         }
-        
+
         await tools.calendar(memory.courses);
         memory.state = "VALIDATED";
         break;
