@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node --env-file=.env --import tsx ./src/cli.ts",
+    "start": "node --env-file=.env --import tsx ./server.ts",
     "format": "prettier --write \"**/*.{ts,json}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
