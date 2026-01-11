@@ -1,6 +1,6 @@
 import { Memory } from "./memory.js";
 import { tools } from "./tools.js";
-import { parse } from "./tools/index.js";
+import { generateICS, parse } from "./tools/index.js";
 import { validateCourses, hasTimeConflict } from "./validator.js";
 
 export async function runAgent(imagePath: string) {
@@ -32,6 +32,11 @@ export async function runAgent(imagePath: string) {
         
         await tools.calendar(memory.courses);
         memory.state = "VALIDATED";
+        break;
+
+      case "VALIDATED":
+        generateICS(memory.courses);
+        memory.state = "COMPLETED";
         break;
     }
   }
