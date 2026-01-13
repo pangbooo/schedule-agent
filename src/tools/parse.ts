@@ -40,6 +40,8 @@ ${text}
     response_format: { type: "json_object" },
   });
 
+  console.log("Parsed Result:", res?.choices?.[0]?.message?.content);
+
   const parsed = JSON.parse(
     res?.choices?.[0]?.message?.content!
   ) as ParseResult;
